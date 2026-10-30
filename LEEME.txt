@@ -1,0 +1,48 @@
+UNDERTUNE — VST3 para Windows x64
+================================
+
+ESTADO DEL PAQUETE
+Este paquete contiene el proyecto fuente de UNDERTUNE. No contiene todavía un binario UNDERTUNE.vst3 compilado y probado en Windows. Para crear el plugin instalable, compílalo siguiendo estos pasos.
+
+FUNCIONES INCLUIDAS EN EL PROTOTIPO
+- Plugin VST3 de efecto para audio mono/estéreo.
+- Modo FEID: corrección más suave (respuesta suavizada; objetivo de retune equivalente aproximado a 20 ms).
+- Modo under: corrección agresiva (respuesta inmediata; objetivo de retune 0 ms).
+- 12 tonalidades: C, C#, D, D#, E, F, F#, G, G#, A, A#, B.
+- Escalas Major y Minor.
+- Bypass.
+- Interfaz oscura personalizada.
+
+IMPORTANTE SOBRE EL SONIDO
+Este es un prototipo original y experimental, no una copia de Antares Auto-Tune. El detector de tono y el desplazamiento granular incluidos aquí pueden producir artefactos, especialmente con voces polifónicas, ruido, consonantes o notas graves. La respuesta de 0 ms describe el objetivo de corrección, no garantiza equivalencia sonora exacta con el modo Classic de Antares. Escúchalo y pruébalo antes de usarlo en una mezcla final.
+
+COMPILAR EN WINDOWS 10/11 (64 BITS)
+1. Instala Visual Studio 2022 con la carga de trabajo “Desktop development with C++”.
+2. Instala CMake 3.22 o superior.
+3. Asegúrate de tener conexión a internet: CMake descargará JUCE 8.0.6 desde su repositorio oficial durante la primera configuración.
+4. Abre PowerShell en esta carpeta.
+5. Ejecuta: .\build_windows.bat
+6. Si la compilación termina correctamente, el plugin VST3 se encontrará dentro de build\UNDERTUNE_artefacts\Release\VST3\UNDERTUNE.vst3 (la ruta exacta puede variar según la versión de CMake/Visual Studio).
+
+INSTALAR EN FL STUDIO
+1. Copia la carpeta UNDERTUNE.vst3 completa (no solo los archivos que contiene) a:
+   C:\Program Files\Common Files\VST3\
+2. Abre FL Studio.
+3. Ve a Options > Manage plugins > Find installed plugins.
+4. Busca UNDERTUNE y cárgalo como efecto en el Mixer.
+5. Si no aparece, verifica que copiaste la carpeta .vst3 correcta y que compilaste para x64.
+
+CONTROLES
+- Correction Mode: FEID / Natural o under / Full Robotic.
+- Key: tonalidad raíz.
+- Scale: Major o Minor.
+- Bypass: desactiva el procesamiento.
+
+CÓDIGO FUENTE
+Los archivos C++ están en Source/. CMakeLists.txt define el proyecto VST3. Puedes modificarlo y volver a compilar.
+
+LICENCIAS Y MARCAS
+UNDERTUNE es un proyecto independiente. No incluye código ni componentes propietarios de Antares Audio Technologies y no está afiliado a Antares.
+
+ACTUALIZACION DE INTERFAZ
+La versión de código fuente incluye una ilustración de Marin Kitagawa con estética gótica integrada como recurso gráfico dentro del plugin. La interfaz contiene controles reales de modo, tonalidad, escala y bypass; la ilustración es decorativa. La imagen se empaqueta mediante JUCE BinaryData durante la compilación.
